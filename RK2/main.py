@@ -18,7 +18,6 @@ class DocSection:
         self.section_id = section_id
 
 def one_to_many_mapping(documents, sections):
-    # Связываем документы с отделами по ID
     result = [(doc.name, doc.pages, sec.name) for doc in documents for sec in sections if doc.section_id == sec.id]
     # Сортируем по названию отдела (третьему элементу кортежа)
     result.sort(key=lambda x: x[2])
@@ -26,7 +25,7 @@ def one_to_many_mapping(documents, sections):
 
 
 def many_to_many_mapping(documents, sections, docs_sections):
-    """Создаёт связь многие ко многим"""
+    """м ко м"""
     section_dict = {s.id: s.name for s in sections}
     result = defaultdict(set)
 
@@ -38,7 +37,7 @@ def many_to_many_mapping(documents, sections, docs_sections):
     return {key: list(value) for key, value in result.items()}
 
 def task_a2(one_to_many, sections):
-    """Сумма страниц для каждого раздела"""
+    """сум страниц"""
     totals = defaultdict(int)
 
     for _, pages, section in one_to_many:
@@ -47,7 +46,7 @@ def task_a2(one_to_many, sections):
     return sorted(totals.items(), key=lambda x: -x[1])
 
 def task_a3(many_to_many, sections):
-    """Разделы с 'раздел' и их документы"""
+    """разделы с 'раздел'(для проверки м ко м поиск по разделу, а не по отделу, но и так и так работает правильно) и их документы"""
     result = {}
     for section, docs in many_to_many.items():
         if 'раздел' in section.lower():
