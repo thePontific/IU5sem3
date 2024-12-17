@@ -25,8 +25,8 @@ class TestDocumentProcessing(unittest.TestCase):
             DocSection(3, 3),
             DocSection(4, 4),
             DocSection(5, 5),
-            DocSection(1, 3),  # Дополнительная связь
-            DocSection(2, 5),  # Дополнительная связь
+            DocSection(1, 3),  
+            DocSection(2, 5), 
         ]
 
     def test_one_to_many_mapping(self):
